@@ -5,7 +5,7 @@ import androidx.annotation.NonNull
 
 interface IHiTabLayout<Tab:ViewGroup,D> {
 
-    fun findTab(@NonNull data:D):Tab
+    fun findTab(@NonNull data:D):Tab?
 
     fun addTabSelectedChangeListener(onTabSelectedListener:OnTabSelectedListener<D>)
 

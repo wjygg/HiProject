@@ -23,6 +23,8 @@ class HiTabBootomLayout : FrameLayout,IHiTabLayout<HiTabBottom,HITabBottomInfo<*
     val tabBottomHeight:Float=50f
     val bottomLineColor:String="def01e"
     var context1:Context? =null
+    val TAG_BOTTOM="frameLayout"
+    lateinit var onTabSelectedListener: IHiTabLayout.OnTabSelectedListener<HITabBottomInfo<*>>
 
     constructor(context: Context): this(context,null){
     }
@@ -31,18 +33,24 @@ class HiTabBootomLayout : FrameLayout,IHiTabLayout<HiTabBottom,HITabBottomInfo<*
      constructor( context: Context, attrs: AttributeSet?, defStyleAttr: Int): super(context,attrs,defStyleAttr) {
        this.context1=context
     }
-    override fun findTab(data: HITabBottomInfo<*>): HiTabBottom {
+    override fun findTab(data: HITabBottomInfo<*>): HiTabBottom? {
 
-        return  HiTabBottom(context)
-
+        var frameLayout=findViewWithTag<FrameLayout>(TAG_BOTTOM)
+        for(index in 0 until frameLayout.childCount){
+            var tabBottom=frameLayout.getChildAt(index)
+            if(tabBottom is HiTabBottom&&tabBottom.getHiTabInfo()==data){
+                return tabBottom
+            }
+        }
+        return null
     }
 
     override fun addTabSelectedChangeListener(onTabSelectedListener: IHiTabLayout.OnTabSelectedListener<HITabBottomInfo<*>>) {
-
+        this.onTabSelectedListener=onTabSelectedListener
     }
 
     override fun defaultSelected(defaultInfo: HITabBottomInfo<*>) {
-
+        onSelected(defaultInfo)
     }
 
     override fun inflateInfo(infoList: List<HITabBottomInfo<*>>) {
@@ -56,8 +64,17 @@ class HiTabBootomLayout : FrameLayout,IHiTabLayout<HiTabBottom,HITabBottomInfo<*
             }
         }
         selectInfo=null
+        for((index,item) in tabChangeListener.withIndex()){
+
+            if(tabChangeListener.get(index)is HiTabBottom){
+                tabChangeListener.removeAt(index)
+            }
+        }
+
+
         addBackGround()
         var frameLayout=FrameLayout(context1)
+        frameLayout.tag=TAG_BOTTOM
         var width=DisplayUtils.getDisplayWidthInPx(context1!!)/this.infoList.size
         for((index,item)in infoList.withIndex()){
             var layoutParams=FrameLayout.LayoutParams(width,DisplayUtils.displayPxToDp(context1!!,tabBottomHeight))
@@ -70,12 +87,22 @@ class HiTabBootomLayout : FrameLayout,IHiTabLayout<HiTabBottom,HITabBottomInfo<*
             frameLayout.addView(hiTabBottom,layoutParams)
             hiTabBottom.setOnClickListener(object :OnClickListener{
                 override fun onClick(p0: View?) {
-
+                    onSelected(item)
                 }
             })
         }
 
+        var layoutParams=LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,FrameLayout.LayoutParams.WRAP_CONTENT)
+        layoutParams.gravity=Gravity.BOTTOM
+        addView(frameLayout,layoutParams)
+    }
 
+    fun onSelected(hiTabBottomInfo: HITabBottomInfo<*>){
+        onTabSelectedListener.onTabSelectListener(infoList.indexOf(hiTabBottomInfo),selectInfo!!,hiTabBottomInfo)
+        for(tabListener in tabChangeListener){
+            tabListener.onTabSelectListener(infoList.indexOf(hiTabBottomInfo),selectInfo!!,hiTabBottomInfo)
+        }
+        selectInfo=hiTabBottomInfo
     }
 
     fun addBackGround(){

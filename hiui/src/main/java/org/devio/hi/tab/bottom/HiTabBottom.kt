@@ -43,6 +43,9 @@ class HiTabBottom : RelativeLayout, IHiTab<HITabBottomInfo<*>> {
         inflateInfo(false,true)
     }
 
+    fun getHiTabInfo():HITabBottomInfo<*>{
+        return this.hiTabBottomInfo
+    }
     /**
      * 是否选中  是否初始化
      */
@@ -62,6 +65,9 @@ class HiTabBottom : RelativeLayout, IHiTab<HITabBottomInfo<*>> {
             }
         }
     }
+
+
+
     override fun resetHeight(height: Int) {
         var layoutParams:ViewGroup.LayoutParams=layoutParams
         layoutParams.height=height
