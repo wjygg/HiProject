@@ -98,11 +98,16 @@ class HiTabBootomLayout : FrameLayout,IHiTabLayout<HiTabBottom,HITabBottomInfo<*
     }
 
     fun onSelected(hiTabBottomInfo: HITabBottomInfo<*>){
-        onTabSelectedListener.onTabSelectListener(infoList.indexOf(hiTabBottomInfo),selectInfo!!,hiTabBottomInfo)
+
+        if(onTabSelectedListener!==null){
+            onTabSelectedListener.onTabSelectListener(infoList.indexOf(hiTabBottomInfo),selectInfo!!,hiTabBottomInfo)
+        }
+
         for(tabListener in tabChangeListener){
             tabListener.onTabSelectListener(infoList.indexOf(hiTabBottomInfo),selectInfo!!,hiTabBottomInfo)
         }
         selectInfo=hiTabBottomInfo
+
     }
 
     fun addBackGround(){
