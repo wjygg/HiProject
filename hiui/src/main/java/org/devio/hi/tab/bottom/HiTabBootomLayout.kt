@@ -73,7 +73,7 @@ class HiTabBootomLayout : FrameLayout,IHiTabLayout<HiTabBottom,HITabBottomInfo<*
 
 
         addBackGround()
-        var frameLayout=FrameLayout(context1)
+        var frameLayout=FrameLayout(context1!!)
         frameLayout.tag=TAG_BOTTOM
         var width=DisplayUtils.getDisplayWidthInPx(context1!!)/this.infoList.size
         for((index,item)in infoList.withIndex()){
