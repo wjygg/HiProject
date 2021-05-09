@@ -45,13 +45,17 @@ class MainActivityLogic {
         hiTabBootomLayout.inflateInfo(infoList)
         initHIFragmentTabView()
         hiTabBootomLayout.addTabSelectedChangeListener(object: IHiTabLayout.OnTabSelectedListener<HITabBottomInfo<*>>{
-            override fun onTabSelectListener(index: Int, prevInfo: HITabBottomInfo<*>?, next: HITabBottomInfo<*>) {
+            override fun onTabSelectListener(
+                index: Int,
+                isSelect: Boolean,
+                prevInfo: HITabBottomInfo<*>?
+            ) {
                 if(hiFragmentTabView!=null){
                     hiFragmentTabView.setCurrentItem(index)
                 }
             }
         })
-        hiTabBootomLayout.defaultSelected(homeInfo)
+        hiTabBootomLayout.defaultSelected(mineInfo)
     }
 
     fun initHIFragmentTabView(){

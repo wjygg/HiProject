@@ -75,23 +75,16 @@ class HiTabBottom : RelativeLayout, IHiTab<HITabBottomInfo<*>> {
         tvName.visibility = View.GONE
     }
 
-    override fun onTabSelectListener(index: Int, prevInfo: HITabBottomInfo<*>?, next: HITabBottomInfo<*>) {
-
-        if(prevInfo==next||prevInfo!=hiTabBottomInfo&&next!=hiTabBottomInfo){
-            return
-        }
-        if(prevInfo==hiTabBottomInfo){
-            inflateInfo(false,false)
-        }else{
-            inflateInfo(true,false)
-        }
-    }
     fun getTextColor(color:Any):Int{
         if(color is String){
             return Color.parseColor(color)
         }else{
             return color as Int
         }
+    }
+
+    fun onTabSelectListener(index: Int, isSelect: Boolean, prevInfo: HITabBottomInfo<*>?) {
+        inflateInfo(isSelect,false)
     }
 
 

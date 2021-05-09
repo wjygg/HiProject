@@ -17,7 +17,7 @@ import java.util.*
 class HiTabBootomLayout : FrameLayout,IHiTabLayout<HiTabBottom,HITabBottomInfo<*>>{
 
     var infoList:List<HITabBottomInfo<*>> = ArrayList<HITabBottomInfo<*>>()
-    var tabChangeListener: MutableList<IHiTabLayout.OnTabSelectedListener<HITabBottomInfo<*>>> = ArrayList()
+    var tabChangeListener: MutableList<HiTabBottom> = ArrayList()
     var selectInfo: HITabBottomInfo<*>? = null
     val bottomAlpha:Float = 1f
     val tabBottomHeight:Float=50f
@@ -50,7 +50,12 @@ class HiTabBootomLayout : FrameLayout,IHiTabLayout<HiTabBottom,HITabBottomInfo<*
     }
 
     override fun defaultSelected(defaultInfo: HITabBottomInfo<*>) {
-        onSelected(defaultInfo)
+        for(info in tabChangeListener){
+            if(info.getHiTabInfo()==defaultInfo){
+                onSelected(defaultInfo,info)
+            }
+        }
+
     }
 
     override fun inflateInfo(infoList: List<HITabBottomInfo<*>>) {
@@ -87,7 +92,7 @@ class HiTabBootomLayout : FrameLayout,IHiTabLayout<HiTabBottom,HITabBottomInfo<*
             frameLayout.addView(hiTabBottom,layoutParams)
             hiTabBottom.setOnClickListener(object :OnClickListener{
                 override fun onClick(p0: View?) {
-                    onSelected(item)
+                    onSelected(item,hiTabBottom)
                 }
             })
         }
@@ -97,14 +102,18 @@ class HiTabBootomLayout : FrameLayout,IHiTabLayout<HiTabBottom,HITabBottomInfo<*
         addView(frameLayout,layoutParams)
     }
 
-    fun onSelected(hiTabBottomInfo: HITabBottomInfo<*>){
+    fun onSelected(hiTabBottomInfo: HITabBottomInfo<*>,hiTabBottom:HiTabBottom){
 
         if(onTabSelectedListener!==null){
-            onTabSelectedListener.onTabSelectListener(infoList.indexOf(hiTabBottomInfo),selectInfo,hiTabBottomInfo)
+            onTabSelectedListener.onTabSelectListener(infoList.indexOf(hiTabBottomInfo),true,hiTabBottomInfo)
         }
 
         for(tabListener in tabChangeListener){
-            tabListener.onTabSelectListener(infoList.indexOf(hiTabBottomInfo),selectInfo,hiTabBottomInfo)
+            if(tabListener==hiTabBottom){
+                tabListener.onTabSelectListener(infoList.indexOf(hiTabBottomInfo),true,hiTabBottomInfo)
+            }else{
+                tabListener.onTabSelectListener(infoList.indexOf(hiTabBottomInfo),false,hiTabBottomInfo)
+            }
         }
         selectInfo=hiTabBottomInfo
 
