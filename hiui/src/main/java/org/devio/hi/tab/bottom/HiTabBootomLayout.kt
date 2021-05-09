@@ -77,7 +77,7 @@ class HiTabBootomLayout : FrameLayout,IHiTabLayout<HiTabBottom,HITabBottomInfo<*
         frameLayout.tag=TAG_BOTTOM
         var width=DisplayUtils.getDisplayWidthInPx(context1!!)/this.infoList.size
         for((index,item)in infoList.withIndex()){
-            var layoutParams=FrameLayout.LayoutParams(width,DisplayUtils.displayPxToDp(context1!!,tabBottomHeight))
+            var layoutParams=FrameLayout.LayoutParams(width,DisplayUtils.displayPxToDp(context1!!,tabBottomHeight).toInt())
             layoutParams.leftMargin=index*width
             layoutParams.gravity=Gravity.BOTTOM
 
@@ -100,11 +100,11 @@ class HiTabBootomLayout : FrameLayout,IHiTabLayout<HiTabBottom,HITabBottomInfo<*
     fun onSelected(hiTabBottomInfo: HITabBottomInfo<*>){
 
         if(onTabSelectedListener!==null){
-            onTabSelectedListener.onTabSelectListener(infoList.indexOf(hiTabBottomInfo),selectInfo!!,hiTabBottomInfo)
+            onTabSelectedListener.onTabSelectListener(infoList.indexOf(hiTabBottomInfo),selectInfo,hiTabBottomInfo)
         }
 
         for(tabListener in tabChangeListener){
-            tabListener.onTabSelectListener(infoList.indexOf(hiTabBottomInfo),selectInfo!!,hiTabBottomInfo)
+            tabListener.onTabSelectListener(infoList.indexOf(hiTabBottomInfo),selectInfo,hiTabBottomInfo)
         }
         selectInfo=hiTabBottomInfo
 
@@ -112,7 +112,7 @@ class HiTabBootomLayout : FrameLayout,IHiTabLayout<HiTabBottom,HITabBottomInfo<*
 
     fun addBackGround(){
         var view: View =LayoutInflater.from(context1).inflate(R.layout.hi_bottom_layout_bg,null)
-        var layoutParams:FrameLayout.LayoutParams=LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,DisplayUtils.displayPxToDp(context1!!,tabBottomHeight))
+        var layoutParams:FrameLayout.LayoutParams=LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,DisplayUtils.displayPxToDp(context1!!,tabBottomHeight).toInt())
         layoutParams.gravity=Gravity.BOTTOM
         view.alpha=bottomAlpha
         addView(view,layoutParams)

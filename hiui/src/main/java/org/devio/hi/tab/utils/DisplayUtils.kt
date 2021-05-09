@@ -5,8 +5,8 @@ import android.util.TypedValue
 
 object DisplayUtils {
 
-    fun displayPxToDp(context: Context,value:Float):Int{
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,value,context.getResources().displayMetrics) as Int
+    fun displayPxToDp(context: Context,value:Float):Float{
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,value,context.getResources().displayMetrics)
     }
 
     fun getDisplayWidthInPx(context: Context):Int{

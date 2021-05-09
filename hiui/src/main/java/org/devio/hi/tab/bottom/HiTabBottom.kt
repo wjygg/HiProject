@@ -14,7 +14,7 @@ import org.devio.hi.tab.common.IHiTab
 
 class HiTabBottom : RelativeLayout, IHiTab<HITabBottomInfo<*>> {
 
-    lateinit var hiContext:Context
+    var hiContext:Context
     lateinit var ivImageView:ImageView
     lateinit var tvName:TextView
     lateinit var hiTabBottomInfo: HITabBottomInfo<*>
@@ -75,7 +75,7 @@ class HiTabBottom : RelativeLayout, IHiTab<HITabBottomInfo<*>> {
         tvName.visibility = View.GONE
     }
 
-    override fun onTabSelectListener(index: Int, prevInfo: HITabBottomInfo<*>, next: HITabBottomInfo<*>) {
+    override fun onTabSelectListener(index: Int, prevInfo: HITabBottomInfo<*>?, next: HITabBottomInfo<*>) {
 
         if(prevInfo==next||prevInfo!=hiTabBottomInfo&&next!=hiTabBottomInfo){
             return
@@ -93,4 +93,6 @@ class HiTabBottom : RelativeLayout, IHiTab<HITabBottomInfo<*>> {
             return color as Int
         }
     }
+
+
 }
