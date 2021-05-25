@@ -8,9 +8,9 @@ import java.lang.Exception
 
 class HiTabViewAdapter {
 
-    private lateinit var mInfoList:MutableList<HITabBottomInfo<*>>
+    private  var mInfoList:MutableList<HITabBottomInfo<*>>
     private  var mCurrentFragment:Fragment ?=null
-    private lateinit var mFragmentManager: FragmentManager
+    private  var mFragmentManager: FragmentManager
 
     constructor(mFragmentManager: FragmentManager,mInfoList:MutableList<HITabBottomInfo<*>>){
         this.mInfoList=mInfoList
@@ -51,6 +51,7 @@ class HiTabViewAdapter {
     fun getCurrentFragment():Fragment{
         return mCurrentFragment!!
     }
+
 
 
 }
