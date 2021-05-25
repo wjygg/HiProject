@@ -61,9 +61,7 @@ class KotlinDemo {
         mapValues.containsValue("key1")
         mapValues.forEach { it:Map.Entry<String,String>->it.key }
         mapValues.forEach  { key:String,value:String-> key+value }
-
-
     }
-    
+
 
 }
