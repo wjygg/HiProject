@@ -21,12 +21,14 @@ class HITabBottomInfo<Color> {
     var selectIconName: Bitmap?=null
     var defaultColor: Color?=null
     var tinkColor: Color?=null
-    var tabType: TabType?=null
+    var tabType: TabType=TabType.BITMAP
 
-    constructor(name:String,defaultBitmap:Bitmap,selectedBitmap:Bitmap){
+    constructor(name:String,defaultBitmap:Bitmap,selectedBitmap:Bitmap,defaultColor:Color,tinkColor:Color){
         this.name=name
         this.defaultBitmap
         this.selectedBitmap=selectedBitmap
+        this.defaultColor=defaultColor
+        this.tinkColor=tinkColor
     }
 
     constructor(name:String,defaultIconName:String, selectIconName: Bitmap, defaultColor: Color,tinkColor: Color, tabType: TabType){

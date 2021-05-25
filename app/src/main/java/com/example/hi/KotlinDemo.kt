@@ -7,6 +7,7 @@ class KotlinDemo {
         baseType()
         arrayTypes()
         jihe()
+        jihe()
     }
 
     fun arrayTypes() {

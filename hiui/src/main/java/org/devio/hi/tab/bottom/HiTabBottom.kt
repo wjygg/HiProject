@@ -14,7 +14,7 @@ import org.devio.hi.tab.common.IHiTab
 
 class HiTabBottom : RelativeLayout, IHiTab<HITabBottomInfo<*>> {
 
-    lateinit var hiContext:Context
+    var hiContext:Context
     lateinit var ivImageView:ImageView
     lateinit var tvName:TextView
     lateinit var hiTabBottomInfo: HITabBottomInfo<*>
@@ -43,6 +43,9 @@ class HiTabBottom : RelativeLayout, IHiTab<HITabBottomInfo<*>> {
         inflateInfo(false,true)
     }
 
+    fun getHiTabInfo():HITabBottomInfo<*>{
+        return this.hiTabBottomInfo
+    }
     /**
      * 是否选中  是否初始化
      */
@@ -62,6 +65,9 @@ class HiTabBottom : RelativeLayout, IHiTab<HITabBottomInfo<*>> {
             }
         }
     }
+
+
+
     override fun resetHeight(height: Int) {
         var layoutParams:ViewGroup.LayoutParams=layoutParams
         layoutParams.height=height
@@ -69,17 +75,6 @@ class HiTabBottom : RelativeLayout, IHiTab<HITabBottomInfo<*>> {
         tvName.visibility = View.GONE
     }
 
-    override fun onTabSelectListener(index: Int, prevInfo: HITabBottomInfo<*>, next: HITabBottomInfo<*>) {
-
-        if(prevInfo==next||prevInfo!=hiTabBottomInfo&&next!=hiTabBottomInfo){
-            return
-        }
-        if(prevInfo==hiTabBottomInfo){
-            inflateInfo(false,false)
-        }else{
-            inflateInfo(true,false)
-        }
-    }
     fun getTextColor(color:Any):Int{
         if(color is String){
             return Color.parseColor(color)
@@ -87,4 +82,10 @@ class HiTabBottom : RelativeLayout, IHiTab<HITabBottomInfo<*>> {
             return color as Int
         }
     }
+
+    fun onTabSelectListener(index: Int, isSelect: Boolean, prevInfo: HITabBottomInfo<*>?) {
+        inflateInfo(isSelect,false)
+    }
+
+
 }

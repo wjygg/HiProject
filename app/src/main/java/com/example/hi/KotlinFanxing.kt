@@ -20,7 +20,7 @@ fun <T> fromJson(json:String,zClass:Class<T>):T{
 }
 
 //泛型约束 T有多个上界类似 java extends
-fun <T> sort(t:List<T>) where T:CharSequence,T:Comparable<T>{
+fun <T:CharSequence> sort(t:List<T>) where T:Comparable<T>{
 
 }
 
