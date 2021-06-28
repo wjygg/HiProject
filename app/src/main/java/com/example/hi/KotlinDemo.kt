@@ -64,11 +64,9 @@ class KotlinDemo {
         val mapValues=mutableMapOf<String,String>("key1" to "1")
         mapValues.put("key2" , "2")
         mapValues.containsValue("key1")
-        mapValues.forEach { it:Map.Entry<String,String>->it.key }
+        mapValues.forEach{ it:Map.Entry<String,String>->it.key }
         mapValues.forEach  { key:String,value:String-> key+value }
-
-
     }
-    
+
 
 }

@@ -1,5 +1,6 @@
 package com.example.hi;
 
+import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,19 @@ public class MainActivity extends AppCompatActivity implements MainActivityLogic
 
         KotlinDemo kotlinDemo=new KotlinDemo();
 
+
+    }
+
+
+    //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
+    private class MyRunnable implements Runnable {
+
+        @Override
+        public void run() {
+            Looper.prepare();
+
+            Looper.loop();
+        }
 
     }
 
