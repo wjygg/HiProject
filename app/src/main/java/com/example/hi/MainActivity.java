@@ -8,8 +8,15 @@ import android.util.TypedValue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.PriorityBlockingQueue;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity implements MainActivityLogic.ActivityProvider {
+
+    private ArrayList<String> list=new ArrayList<String>();
+    private ArrayList[] list1=new ArrayList[5];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +24,15 @@ public class MainActivity extends AppCompatActivity implements MainActivityLogic
         setContentView(R.layout.activity_main);
         // TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,5f,getResources().getDisplayMetrics());
         MainActivityLogic mainActivityLogic=new MainActivityLogic(this);
+
+        KotlinDemo kotlinDemo=new KotlinDemo();
+
+
     }
+
+
+
+
 
 
 

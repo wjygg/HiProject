@@ -1,1 +1,1 @@
-include ':app', ':hiui'
+include ':app', ':hiui',':hilibrary'

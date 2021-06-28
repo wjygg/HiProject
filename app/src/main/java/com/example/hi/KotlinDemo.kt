@@ -2,6 +2,10 @@ package com.example.hi
 
 class KotlinDemo {
 
+
+    @JvmField
+    var str:String ?=null
+
     fun main(){
         println("-----main----")
         baseType()
