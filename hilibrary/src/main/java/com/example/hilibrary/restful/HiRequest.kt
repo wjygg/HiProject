@@ -8,11 +8,11 @@ open class HiRequest {
     @METHOD
     var httpMethod:Int=0
     var headers:MutableMap<String,String> ? =null
-    var paramters:MutableMap<String,Any> ?=null
+    var paramters:MutableMap<String,String> ?=null
     var domainUrl:String ? =null
     var relativeUrl:String ?=null
     var returnType:Type ?=null
-
+    var formPost: Boolean = true
 
 
 

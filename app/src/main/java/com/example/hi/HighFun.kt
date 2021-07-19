@@ -1,5 +1,7 @@
 package com.example.hi
 
+import java.io.IOException
+
 fun main(){
 
     //函数作为参数
@@ -41,6 +43,12 @@ fun testClosure(v1:Int):(v2:Int,action:(Int)->Unit)->Unit{
         action(v1+v2)
     }
 
+}
+
+interface Kt{
+
+
+    fun getName()
 
 }
 

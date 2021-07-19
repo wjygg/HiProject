@@ -15,7 +15,7 @@ class KotlinDemo {
     }
 
     fun arrayTypes() {
-        val array= arrayOf(1,2,3)
+        val array= arrayOf<Int>()
         val array1= arrayOfNulls<String>(3)
         val array2 = Array(3){i->(i*i).toString()}
         val array3= IntArray(5)
